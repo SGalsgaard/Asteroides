@@ -1,8 +1,10 @@
 var ship;
+var asteroids = [];
 
 function setup(){
     createCanvas(windowWidth, windowHeight); //laver vinduet
     ship = new Ship
+    asteroids.push(new Asteroid());
 }
 
 function draw(){
@@ -11,6 +13,10 @@ function draw(){
     ship.turn();// får skibet til at dreje i programmet
     ship.update();// får skibet til at køre fremad
     ship.edges();// får skibet til at komme frem på den ene side hvis man køre ud over den anden side
+
+    for (var i = 0; i < asteroids.length; i++){
+        asteroids[i].render();
+    }
 }
 
 function keyReleased(){
@@ -57,11 +63,13 @@ function Ship(){
     }
     
     this.render = function(){
+        push(); // sørger for at asteroiderne ikke bevæger sig sammen med skibet
         translate(this.pos.x,this.pos.y); //den kører værdierne efter x og y i stedet for at det bar er værdier
         rotate(this.heading + PI / 2);
         noFill(); //siger at den ikke skal fyklde trekanten med en farve
         stroke(255); //giver trekanten en hvid kant
         triangle(-this.r, this.r, this.r, this.r, 0, -this.r); //trekantens kordinater
+        pop();// sørger for at asteroiderne ikke bevæger sig sammen med skibet
     }
 
     this.edges = function(){

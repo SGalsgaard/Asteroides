@@ -57,11 +57,13 @@ function Ship(){
     }
     
     this.render = function(){
+        push();
         translate(this.pos.x,this.pos.y); //den kører værdierne efter x og y i stedet for at det bar er værdier
         rotate(this.heading + PI / 2);
         noFill(); //siger at den ikke skal fyklde trekanten med en farve
         stroke(255); //giver trekanten en hvid kant
         triangle(-this.r, this.r, this.r, this.r, 0, -this.r); //trekantens kordinater
+        pop();
     }
 
     this.edges = function(){
