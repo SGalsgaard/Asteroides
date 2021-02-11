@@ -56,11 +56,20 @@ function Ship(){
         this.vel.add(force);//tilføjer velocity til skibet
     }
     
+    this.hits = function(asteroids) {
+        var d = dist(this.pos.x, this.pos.y, asteroid.pos.x, asteroid.pos.y);
+        if (d < this.r + asteroid.r) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     this.render = function(){
         push();
         translate(this.pos.x,this.pos.y); //den kører værdierne efter x og y i stedet for at det bar er værdier
         rotate(this.heading + PI / 2);
-        noFill(); //siger at den ikke skal fyklde trekanten med en farve
+        fill(0); //fylder trekanten med sort farve, så man ikke kan se skudenen der bliver skudt fra centrum
         stroke(255); //giver trekanten en hvid kant
         triangle(-this.r, this.r, this.r, this.r, 0, -this.r); //trekantens kordinater
         pop();
