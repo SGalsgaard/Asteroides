@@ -12,7 +12,7 @@ function setup() {
 }
 
 function draw() {
-    background(255);//baggrunds farven
+    background(0);//baggrunds farven
 
 
     for (var i = 0; i < asteroids.length; i++) {
