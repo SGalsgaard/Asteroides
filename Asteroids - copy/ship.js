@@ -19,7 +19,11 @@ function keyReleased(){
 }
 
 function keyPressed(){
-    if (keyCode == RIGHT_ARROW){
+    //lasers.push(new Laser(ship.pos, ship.direction));
+    if (keyCode == 32) {
+        lasers.push(new Laser(ship.pos, ship.heading));
+    }
+    else if (keyCode == RIGHT_ARROW){
         ship.setRotation(0.1);//skibet drejer til højre når der trykkes på højre piletast
     }   else if (keyCode == LEFT_ARROW){
         ship.setRotation(-0.1);//skibet drejer til venstre når der trykkes på venstre piletast

@@ -24,30 +24,31 @@ function draw() {
         asteroids[i].edges();
     }
 
-    // for (var i = lasers.length-1; i >=0; i--){
-    //     lasers[i].render();
-    //     lasers[i].update();
-    //     if (lasers[i].offscreen()){
-    //         lasers.splice(i, 1);
-    //     } else {
+    for (var i = lasers.length - 1; i >= 0; i--) {
+        lasers[i].render();
+        lasers[i].update();
+        if (lasers[i].offscreen()) {
+            lasers.splice(i, 1);
+        } else {
+            for (var j = asteroids.length - 1; j >= 0; j--){
+                if (lasers[i].hits(asteroids[j])) {
+                    if (asteroids[j].r > 10) {
+                        var newAsteroids = asteroids[j].breakup();
+                        console.log(newAsteroids);
+                        asteroids = asteroids.concat(newAsteroids);
+                        console.log(asteroids);
+                    }
+                    asteroids.splice(j, 1);
+                    lasers.splice(i, 1);
+                    break;
 
+                }
+            }
+        }
 
-    //     for (var j = asteroids.length-1; j >= 0 < asteroids.length; j--)
-    //         if (lasers[i].hits(asteroids[j])){
-    //             if (asteroids[j].r > 10){
-    //             var newAsteroids = asteroids[j].breakup();
-    //             console.log(newAsteroids);
-    //             asteroids = asteroids.concat(newAsteroids);
-    //             console.log(asteroids);
-    //             } 
-    //             asteroids.splice(j, 1);
-    //             lasers.splice(i, 1);
-    //             break;
+    }
+    
 
-    //     }
-    // }
-
-    // }
 
     ship.render();//tegner trekanten / skibet
     ship.turn();// får skibet til at dreje i programmet
@@ -61,9 +62,7 @@ function keyReleased() {
 }
 
 function keyPressed() {
-    if (key == '32') {
-        lasers.push(new Laser(ship.pos, ship.heading));
-    } else if (keyCode == RIGHT_ARROW) {
+    if (keyCode == RIGHT_ARROW) {
         ship.setRotation(0.1);//skibet drejer til højre når der trykkes på højre piletast
     } else if (keyCode == LEFT_ARROW) {
         ship.setRotation(-0.1);//skibet drejer til venstre når der trykkes på venstre piletast

@@ -1,6 +1,6 @@
 function Laser(spos, angle){
-    this.pos = createvector(spos.x, spos.y);
-    this.vel = p5.vector.fromAngle(angle);// får skudene til at bevæge sig fremad
+    this.pos = createVector(spos.x, spos.y);
+    this.vel = p5.Vector.fromAngle(angle);// får skudene til at bevæge sig fremad
     this.vel.mult(10); // får skudene til at flyve hurtiger
 
     this.update = function(){
