@@ -1,17 +1,9 @@
 var ship;
 
-// function setup(){
-//     createCanvas(windowWidth, windowHeight); //laver vinduet
-//     ship = new Ship
-// }
-
-// function draw(){
-//     background(0);//baggrunds farven
-//     ship.render();//tegner trekanten / skibet
-//     ship.turn();// får skibet til at dreje i programmet
-//     ship.update();// får skibet til at køre fremad
-//     ship.edges();// får skibet til at komme frem på den ene side hvis man køre ud over den anden side
-// }
+function keyReleased(){
+    ship.setRotation(0);
+    ship.boosting(false);//når man slipper tasten stopper skibet med at booste
+}
 
 function keyReleased(){
     ship.setRotation(0);
