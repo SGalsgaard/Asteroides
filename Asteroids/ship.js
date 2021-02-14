@@ -10,18 +10,20 @@ function keyReleased(){
     ship.boosting(false);//når man slipper tasten stopper skibet med at booste
 }
 
+function mousePressed() {
+    lasers.push(new Laser(ship.pos, ship.heading));// gør at man kan bruge musenb til at skyde
+}
+
 function keyPressed(){
-    //lasers.push(new Laser(ship.pos, ship.direction));
-    if (keyCode == 32) {
-        lasers.push(new Laser(ship.pos, ship.heading));
-    }
-    else if (keyCode == RIGHT_ARROW){
+    if (keyCode == RIGHT_ARROW || keyCode == 68){
         ship.setRotation(0.1);//skibet drejer til højre når der trykkes på højre piletast
-    }   else if (keyCode == LEFT_ARROW){
+    }   else if (keyCode == LEFT_ARROW || keyCode == 65){
         ship.setRotation(-0.1);//skibet drejer til venstre når der trykkes på venstre piletast
-    }   else if (keyCode == UP_ARROW){
+    }   else if (keyCode == UP_ARROW || keyCode == 87){
         ship.boosting(true);//skibet flyver frem ad når man trykker på pil op
-    }   
+    }   else if (keyCode == 32){
+        ship.superboost(true);
+    }
 }
 
 function Ship(){
@@ -31,6 +33,12 @@ function Ship(){
     this.rotation = 0;
     this.vel = createVector(0,0);//afgøre farten når der ikke bliver trykket på pil op
     this.isBoosting = false;
+
+    this.isSuperBoosting = false;
+
+    this.superboosting = function(b){
+        this.isSuperBoosting = b;
+    }
 
     this.boosting = function(b){
         this.isBoosting = b;
@@ -52,6 +60,12 @@ function Ship(){
         this.vel.add(force);//tilføjer velocity til skibet
     }
     
+    this.superboost = function(){
+        var force = p5.Vector.fromAngle(this.heading);
+        force.mult(10);
+        this.vel.add(force);
+    }
+
     this.hits = function(asteroids) {
         var d = dist(this.pos.x, this.pos.y, asteroid.pos.x, asteroid.pos.y);
         if (d < this.r + asteroid.r) {
