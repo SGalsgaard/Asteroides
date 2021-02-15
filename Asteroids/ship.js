@@ -1,10 +1,3 @@
-var ship;
-
-function keyReleased(){
-    ship.setRotation(0);
-    ship.boosting(false);//når man slipper tasten stopper skibet med at booste
-}
-
 function keyReleased(){
     ship.setRotation(0);
     ship.boosting(false);//når man slipper tasten stopper skibet med at booste

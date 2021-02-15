@@ -26,7 +26,6 @@ function Asteroid(pos, r) {
     stroke(255);//giver farve
     noFill();//går så den ikke fyldes med farve
     translate(this.pos.x, this.pos.y);
-    //ellipse(0, 0, this.r*2);
     beginShape();
     for (var i = 0; i < this.total; i++) {
       var angle = map(i, 0, this.total, 0, TWO_PI);//gør at cirklen bliver labet af prikker der er melle m0 og 360 grader
@@ -48,15 +47,15 @@ function Asteroid(pos, r) {
   }
 
   this.edges = function () {
-    if (this.pos.x > width + this.r) { // sørger for at skibet kommer frem på venstre side, hvis man køre ud over højre side
+    if (this.pos.x > width + this.r) { // sørger for at asteroiderne kommer frem på venstre side, hvis man køre ud over højre side
       this.pos.x = -this.r;
-    } else if (this.pos.x < -this.r) { // sørger for at skibet kommer frem på højre side, hvis man køre ud over venstre side
+    } else if (this.pos.x < -this.r) { // sørger for at asteroiderne kommer frem på højre side, hvis man køre ud over venstre side
       this.pos.x = width + this.r;
     }
 
-    if (this.pos.y > height + this.r) { // sørger for at skibet kommer frem i toppen, hvis man køre ud i bunden
+    if (this.pos.y > height + this.r) { // sørger for at asteroiderne kommer frem i toppen, hvis man køre ud i bunden
       this.pos.y = -this.r;
-    } else if (this.pos.y < -this.r) { // sørger for at skibe kommer frem i bunden, hvis man køre ud i toppen
+    } else if (this.pos.y < -this.r) { // sørger for at asteroiderne kommer frem i bunden, hvis man køre ud i toppen
       this.pos.y = height + this.r;
     }
 

@@ -1,19 +1,13 @@
 var ship;
 var asteroids = [];
 var lasers = [];
-// var song;
 
 function setup() {
     createCanvas(windowWidth, windowHeight); //laver vinduet
-    // song = loadSound("zap.mp3", loaded);
     ship = new Ship();
     for (var i = 0; i < 5; i++){
         asteroids.push(new Asteroid());
     }
-}
-
-function loaded() {
-    song.play();
 }
 
 function draw() {
@@ -21,9 +15,6 @@ function draw() {
 
 
     for (var i = 0; i < asteroids.length; i++) {
-        // if (ship.hits(asteroids[i])) {
-        //     console.log('ooops!');
-        // }
         asteroids[i].render();
         asteroids[i].update();
         asteroids[i].edges();
@@ -39,9 +30,7 @@ function draw() {
                 if (lasers[i].hits(asteroids[j])) {
                     if (asteroids[j].r > 10) {
                         var newAsteroids = asteroids[j].breakup();
-                        console.log(newAsteroids);
                         asteroids = asteroids.concat(newAsteroids);
-                        console.log(asteroids);
                     }
                     asteroids.splice(j, 1);
                     lasers.splice(i, 1);
